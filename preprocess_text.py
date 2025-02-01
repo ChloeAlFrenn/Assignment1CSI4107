@@ -1,56 +1,64 @@
 import json
 import re
-from nltk.stem import PorterStemmer #add the import to RM
+from collections import defaultdict
+from nltk.stem import PorterStemmer
 
-# Load stopwords from a file into a set. 
+# Load stopwords from a file into a set
 def load_stopwords(file_path):
     with open(file_path, "r") as file:
         return set(word.strip() for word in file)
 
-# Preprocesse a text: removes unwanted characters, tokenize, remove stopwords, and (optionnal) apply stemming. 
+# Preprocess a text: removes unwanted characters, tokenize, remove stopwords, and (optionally) apply stemming
 def preprocess_text(text, stop_words, stem=False):
-    #removes all characters that aren't letters or spaces
+    # Remove all characters that aren't letters or spaces
     text = re.sub(r"[^a-zA-Z\s]", "", text)
 
     tokens = text.lower().split()
     
-    filtered_tokens = []
-    for word in tokens:
-        if word not in stop_words:
-            filtered_tokens.append(word)
-    tokens = filtered_tokens
-
-    #optional: stemming
+    # Remove stopwords
+    filtered_tokens = [word for word in tokens if word not in stop_words]
+    
+    # Optional: Apply stemming
     if stem:
         stemmer = PorterStemmer()
-        stemmed_tokens = []
-        for word in filtered_tokens:
-            stemmed_tokens.append(stemmer.stem(word))
-        tokens = stemmed_tokens
+        filtered_tokens = [stemmer.stem(word) for word in filtered_tokens]
 
+    return filtered_tokens
+
+# Build the inverted index
+def build_inverted_index(corpus_file, stop_words, stem=False):
+    inverted_index = defaultdict(lambda: defaultdict(int))  # term -> {doc_id: tf}
     
-    return tokens
-
-# Process a file: loads the file and receive the preprocessed tokens.
-def process_file(text_file, stop_words, stem=False):
-    with open(text_file, "r") as file:
-        for line in file:
+    with open(corpus_file, "r") as file:
+        for doc_id, line in enumerate(file):
             document = json.loads(line.strip())  
             text = document.get("text", "")  
             
-            processed_tokens = preprocess_text(text, stop_words, stem)
+            # Preprocess the text
+            tokens = preprocess_text(text, stop_words, stem)
             
-            #printing for now change later
-            print(processed_tokens)  
+            # Update the inverted index
+            for token in tokens:
+                inverted_index[token][doc_id] += 1  # Increment term frequency for this document
+
+    return inverted_index
+
+# Main function to load files and run the process
+def main(corpus_file, stopwords_file, stem=False):
+    # Load stopwords from file
+    stop_words = load_stopwords(stopwords_file)
+    
+    # Build the inverted index from the corpus
+    inverted_index = build_inverted_index(corpus_file, stop_words, stem)
+    
+    # Output the inverted index (just the first few entries to check)
+    print("Sample inverted index:")
+    for term, doc_freq in list(inverted_index.items())[:10]:  # Print only first 10 terms
+        print(f"Term: {term}, Documents: {dict(doc_freq)}")
 
 
-
-stopwords_file = "stopwords.txt" 
 corpus_file = "scifact/corpus.jsonl"  
-queries_file="scifact/queries.jsonl"
-    
-stop_words = load_stopwords(stopwords_file)
-    
-#pass stem as true to apply stemming)
-process_file(corpus_file, stop_words, stem=False)
-process_file(queries_file,stop_words, stem=False)
+stopwords_file = "stopwords.txt"      
+
+# Run the preprocessing and indexing steps
+main(corpus_file, stopwords_file, stem=False)
