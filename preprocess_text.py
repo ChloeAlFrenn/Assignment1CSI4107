@@ -26,11 +26,12 @@ def preprocess_text(text, stop_words, stem=False):
     return filtered_tokens
 
 # Build the inverted index
-def build_inverted_index(corpus_file, stop_words, stem=False):
+def create_inverted_index(corpus_file, stop_words, stem=False):
+    
     inverted_index = defaultdict(lambda: defaultdict(int))  # term -> {doc_id: tf}
     
     with open(corpus_file, "r") as file:
-        for doc_id, line in enumerate(file):
+        for doc_num, line in enumerate(file):
             document = json.loads(line.strip())  
             text = document.get("text", "")  
             
@@ -39,7 +40,7 @@ def build_inverted_index(corpus_file, stop_words, stem=False):
             
             # Update the inverted index
             for token in tokens:
-                inverted_index[token][doc_id] += 1  # Increment term frequency for this document
+                inverted_index[token][doc_num] += 1  # Increment term frequency for this document
 
     return inverted_index
 
@@ -49,7 +50,7 @@ def main(corpus_file, stopwords_file, stem=False):
     stop_words = load_stopwords(stopwords_file)
     
     # Build the inverted index from the corpus
-    inverted_index = build_inverted_index(corpus_file, stop_words, stem)
+    inverted_index = create_inverted_index(corpus_file, stop_words, stem)
     
     # Output the inverted index (just the first few entries to check)
     print("Sample inverted index:")
