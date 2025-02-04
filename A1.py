@@ -4,13 +4,18 @@ import math
 from collections import defaultdict
 from nltk.stem import PorterStemmer
 
-# Load stopwords from a file into a set
 def load_stopwords(file_path):
+    """
+    Loads stopwords from a file into a set
+    """
     with open(file_path, "r") as file:
         return set(word.strip() for word in file)
 
-# Preprocess a text: removes unwanted characters, tokenize, remove stopwords, and (optionally) apply stemming
 def preprocess_text(text, stop_words, stem=False):
+    """
+    Preprocess a text: removes unwanted characters, tokenize, remove stopwords, and can apply stemming if stem
+    is set to True
+    """
     # Remove all characters that aren't letters or spaces
     text = re.sub(r"[^a-zA-Z\s]", "", text)
 
