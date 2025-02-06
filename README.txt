@@ -30,7 +30,13 @@ Instructions for running the Program:
             - `scifact/queries.jsonl` (Query set)
             - `stopwords.txt` (List of stopwords)
      
-        2. Run the program with: "python A1.py"
+        2. Run the program with: "python A1.py" 
+            if this does not work you can create a virtual environment in this way:
+                python3 -m venv venv
+                source venv/bin/activate
+                pip install nltk
+                python A1.py
+
 
         3. The output of the program will be avaialble in the Results.txt file
 
