@@ -29,6 +29,10 @@ def preprocess_text(text, stop_words, stem=False):
         stemmer = PorterStemmer()
         filtered_tokens = [stemmer.stem(word) for word in filtered_tokens]
 
+    with open("vocabulary.txt", "a") as vocab_file: #save the output of the vocabulary into a vocabulary.txt file
+        for token in filtered_tokens:
+            vocab_file.write(f"{token}\n")     
+
     return filtered_tokens
 
 # Build the inverted index
@@ -38,8 +42,9 @@ def create_inverted_index(corpus_file, stop_words, stem=False):
         for line in file:
             document = json.loads(line.strip())
             doc_id = document["_id"]
+            title = document.get("title", "")
             text = document.get("text", "")
-            tokens = preprocess_text(text, stop_words, stem)
+            tokens = preprocess_text(title + " " + text, stop_words, stem)
             for token in tokens:
                 inverted_index[token][doc_id] += 1
     return inverted_index
@@ -211,4 +216,4 @@ queries_file = "scifact/queries.jsonl"
 stopwords_file = "stopwords.txt" 
 output_file = "Results.txt"     
 
-main(corpus_file, stopwords_file, queries_file, output_file, stem=False)
+main(corpus_file, stopwords_file, queries_file, output_file, stem=True)
