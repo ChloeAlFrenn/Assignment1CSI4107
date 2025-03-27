@@ -214,6 +214,6 @@ def main(corpus_file, stopwords_file, queries_file, output_file, stem=False):
 corpus_file = "scifact/corpus.jsonl" 
 queries_file = "scifact/queries.jsonl" 
 stopwords_file = "stopwords.txt" 
-output_file = "Results.txt"     
+output_file = "ResultsA1.txt"     
 
 main(corpus_file, stopwords_file, queries_file, output_file, stem=True)
