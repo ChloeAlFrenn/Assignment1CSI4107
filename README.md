@@ -28,6 +28,10 @@ The program consists of two key components:
 
 ##### **How to Run the Programs**
 
+Install Dependencies: Ensure that you have the required libraries installed:
+
+pip install sentence-transformers tensorflow tensorflow-hub numpy scikit-learn
+
 1. BERT-based Retrieval System**: in A2.py
 
    - python A2.py
