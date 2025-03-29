@@ -68,7 +68,7 @@ The system was evaluated using two different neural retrieval methods: **BERT** 
 
 - **USE-based Re-ranking**: The USE embeddings provided a semantic re-ranking of the results obtained from the TF-IDF approach. The re-ranking did not improve the precision and relevance of the top-ranked documents, as measured by evaluation metrics such as MAP and P@10.
 
-#### **Evaluation Results**
+#### **Evaluation Results Summary**
 
 - **MAP (Mean Average Precision)**: 
    - **BERT-based Retrieval**: 0.6032
@@ -82,5 +82,10 @@ The system was evaluated using two different neural retrieval methods: **BERT** 
      
 #### **Discussion of Results**
 
+MAP (Mean Average Precision)
+- BERT-based Retrieval achieved the highest MAP score of 0.6032, which indicates that the BERT embeddings performed the best when it came to ranking precision across all queries. The high MAP score suggests that BERT's deep learning-based approach was effective at understanding the semantic content of both the queries and documents, resulting in more relevant documents being ranked higher.
+BERT’s ability to capture complex contextual relationships between words and phrases enabled it to outperform the TF-IDF method, likely due to its caability of semantic understanding, which allows it to rank documents more accurately even if the query and document do not share many exact terms. 
 
+- The USE-based Re-ranking achieved a lower MAP score of 0.3333, which suggests that although the Universal Sentence Encoder (USE) is capable of capturing semantic similarities, it was less effective than BERT in this case. One possible reason for this could be that USE embeddings, while useful for semantic understanding, may not have captured the nuances of the document-query relationships as well as BERT did. 
 
+- The TF-IDF method from Assignment 1 scored 0.5610, which is significantly lower than BERT-based retrieval but higher than USE-based re-ranking. While TF-IDF is a traditional and efficient retrieval method based on term frequency and inverse document frequency, it doesn’t capture the semantic meaning or context between query and document. As a result, it doesn't rank documents with the same level of precision as neural models like BERT. However, TF-IDF’s performance still ranks higher than the USE-based re-ranking, possibly because the initial retrieval in Assignment 1 was based on a more straightforward keyword match.
