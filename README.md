@@ -73,8 +73,13 @@ The system was evaluated using two different neural retrieval methods: **BERT** 
 - **MAP (Mean Average Precision)**: 
    - **BERT-based Retrieval**: 0.6032
    - **USE-based Re-ranking**: 
-   - **TF-IDF (Assignment 1)**: 0.50
+   - **TF-IDF (Assignment 1)**: 0.5610
 
+- **Precision at 10**:
+   - **BERT-based Retrieval**: 0.6032
+   - **USE-based Re-ranking**: 
+   - **TF-IDF (Assignment 1)**: 0.0857
+     
 #### **Discussion of Results**
 
 
