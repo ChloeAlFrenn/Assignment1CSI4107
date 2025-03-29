@@ -27,8 +27,9 @@ The program consists of two key components:
    - Outouts a re-ranked list of the documents.
 
 ##### **How to Run the Programs**
-
-Install Dependencies: Ensure that you have the required libraries installed:
+Prerequisite: Have python installed
+*Install Dependencies* - Ensure that you have the required libraries installed:
+(If you use python3, use pip3 to install dependencies. For python, use pip)
 
 `pip install sentence-transformers tensorflow tensorflow-hub numpy scikit-learn`
 
