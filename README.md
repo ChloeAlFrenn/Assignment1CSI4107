@@ -41,9 +41,7 @@ Prerequisite: Have python installed
 
 2. Universal Sentence Encoder (USE)-based Re-ranking System**: in A2_USE.py
 
-   - first run A1.PY
-   `python A1.py`
-   - then run A2_USE.py
+   - run A2_USE.py
    `python A2_USE.py`
    - Results found in USE_Results.txt
 
