@@ -59,27 +59,24 @@ The program consists of two key components:
    - **Dictionary**: The document texts are stored in a dictionary (`doc_texts`) where the key is the document ID and the value is the combined text (title + content).
    - **TF-IDF Results**: The results of the initial retrieval from Assignment 1 are parsed and used as the input for re-ranking.
 
-#### **First 10 Answers to Queries 1 and 3**
+#### **First 10 Answers to Queries **
 
-- **Query 1**:
-
-- **Query 3**:
 
 #### **Discussion of Results**
 The system was evaluated using two different neural retrieval methods: **BERT** and **USE**. The results were compared to the initial TF-IDF-based retrieval results from Assignment 1.
 
 - **BERT-based Retrieval**: The BERT embeddings provided high-quality semantic understanding of the documents and queries, resulting in more relevant retrieval compared to the TF-IDF-based approach. The ranking was sensitive to semantic nuances in the query and document content.
 
-- **USE-based Re-ranking**: The USE embeddings provided a semantic re-ranking of the results obtained from the TF-IDF approach. The re-ranking improved the precision and relevance of the top-ranked documents, as measured by evaluation metrics such as MAP and P@10.
+- **USE-based Re-ranking**: The USE embeddings provided a semantic re-ranking of the results obtained from the TF-IDF approach. The re-ranking did not improve the precision and relevance of the top-ranked documents, as measured by evaluation metrics such as MAP and P@10.
 
 #### **Evaluation Results**
 
 - **MAP (Mean Average Precision)**: 
    - **BERT-based Retrieval**: 0.6032
-   - **USE-based Re-ranking**: [Insert MAP score]
+   - **USE-based Re-ranking**: 
    - **TF-IDF (Assignment 1)**: 0.50
 
-#### **Conclusion**
+#### **Discussion of Results**
 
-This report demonstrates that the neural retrieval methods, particularly BERT and USE, significantly improved retrieval performance compared to the traditional TF-IDF approach. These methods were able to capture semantic relationships between queries and documents, leading to better-ranked results. Further optimization can be achieved by experimenting with other advanced models and fine-tuning the system parameters.
+
 
