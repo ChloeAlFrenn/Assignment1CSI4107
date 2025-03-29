@@ -46,11 +46,6 @@ Prerequisite: Have python installed
    - then run A2_USE.py
    `python A2_USE.py`
    - Results found in USE_Results.txt
-  
-3. Evaluating the Models
-   - `trec_eval scifact/qrels/train_fixed.txt Results.txt` for BERT-based Retrieval System
-   - `trec_eval scifact/qrels/train_fixed.txt USE_Results.txt` for Universal Sentence Encoder (USE)-based Re-ranking System
-  
 
 
 #### **Algorithms and Data Structures Used**
